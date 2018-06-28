@@ -4,6 +4,10 @@
  * Frontend Controllers
  * All route names are prefixed with 'frontend.'.
  */
+Route::group(['middleware' => 'dev'], function()
+{
+    // All routes that need restricting for non-approved clients go here
+
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('contact', 'ContactController@index')->name('contact');
 Route::post('contact/send', 'ContactController@send')->name('contact.send');
@@ -30,4 +34,5 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
          */
         Route::patch('profile/update', 'ProfileController@update')->name('profile.update');
     });
+});
 });

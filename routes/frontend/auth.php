@@ -4,6 +4,8 @@
  * Frontend Access Controllers
  * All route names are prefixed with 'frontend.auth'.
  */
+Route::group(['middleware' => 'dev'], function()
+{
 Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
 
     /*
@@ -57,4 +59,5 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
         Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset.form');
         Route::post('password/reset', 'ResetPasswordController@reset')->name('password.reset');
     });
+});
 });
